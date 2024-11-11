@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Отчет түзүү</title>
+</head>
+<body>
+    <h1>Отчет түзүү</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отчетту сактоо</button>
+    </form>
+
+    {% if graph %}
+        <h2>Сиздин отчетуңуз</h2>
+        <img src="data:image/png;base64,{{ graph }}" alt="Диограмма">
+    {% endif %}
+</body>
+</html>

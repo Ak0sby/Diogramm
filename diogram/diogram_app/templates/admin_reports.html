@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ Отчеттору</title>
+    <style>
+        /* Жалпы стилдер */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Диаграммалардын стилдери */
+        .graph-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Кичине экрандарда тууралоо үчүн */
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .graph-container .report {
+            width: 45%; /* Диаграмманы туура көлөмдө көрсөтүү */
+            text-align: center;
+        }
+
+        .graph-container img {
+            width: 100%; /* Диаграммалардын туура көрүнүшү үчүн */
+            max-width: 600px; /* Диаграмманы чоң кылуу */
+            height: auto;
+        }
+
+        .summary-graph {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Жалпы жыйынтык диаграммасынын стилдери */
+        .summary-graph img {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Кнопка үчүн стилдер */
+        .btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function toggleSummaryGraph() {
+            var summaryGraph = document.getElementById('summary-graph');
+            summaryGraph.style.display = (summaryGraph.style.display === 'none' || summaryGraph.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Админ: Бардык Колдонуучулардын Отчеттору</h1>
+
+        <!-- "Жалпы Жыйынтык Диаграмма" кнопкасы -->
+        <button class="btn" onclick="toggleSummaryGraph()">Жалпы Жыйынтык Диаграмма</button>
+
+        <!-- Жалпы Жыйынтык Диаграмма (баштапкы абалда жабык) -->
+        <div class="summary-graph" id="summary-graph" style="display: none;">
+            <h2>Жалпы Жыйынтык Диаграмма</h2>
+            <img src="data:image/png;base64,{{ summary_diagram }}" alt="Жалпы Жыйынтык Диаграмма">
+        </div>
+
+        <hr>
+
+        <h2>Колдонуучулардын Отчеттору:</h2>
+
+        <!-- Колдонуучулардын отчетторунун диаграммалары -->
+        <div class="graph-container">
+            {% for report, graph in diagrams %}
+            <div class="report">
+                <h3>Отчет - {{ report.user.username }}</h3>
+                <img src="data:image/png;base64,{{ graph }}" alt="Диаграмма">
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</body>
+</html>

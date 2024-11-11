@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+</head>
+<body>
+    <h2>вход</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Кирүү</button>
+    </form>
+    {% if next %}
+        <p>Киргениңизден кийин өтүү: {{ next }}</p>
+    {% endif %}
+</body>
+</html>
