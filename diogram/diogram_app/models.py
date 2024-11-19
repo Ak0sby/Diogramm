@@ -15,4 +15,4 @@ class Report(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
     def __str__(self):
-        return f"{self.user.username} - {self.created_at}"
+        return f"Отчет пользователя {self.user.username} (ID: {self.user.id}) - {self.created_at}"
