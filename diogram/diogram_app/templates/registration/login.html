@@ -6,11 +6,20 @@
     <title>Вход</title>
 </head>
 <body>
-    <h2>вход</h2>
+<style>
+    body {
+    background: url("https://www.shutterstock.com/shutterstock/photos/2128959116/display_1500/stock-vector-abstract-waving-particle-technology-background-design-abstract-wave-moving-dots-flow-particles-hi-2128959116.jpg") no-repeat center/cover ;
+    height: 90vh;
+    text-align: center;
+    color: white;
+
+    }
+
+</style>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Кирүү</button>
+        <button type="submit">Вход</button>
     </form>
     {% if next %}
         <p>Киргениңизден кийин өтүү: {{ next }}</p>
